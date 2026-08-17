@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { NestExceptionFilter } from '@shared/index';
+import { NestExceptionFilter } from '../../lib/shared/src/index';
 import * as process from 'node:process';
 
 /**

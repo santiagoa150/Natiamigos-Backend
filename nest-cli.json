@@ -25,11 +25,11 @@
     },
     "shared": {
       "type": "library",
-      "root": "libs/shared",
+      "root": "lib/shared",
       "entryFile": "index",
-      "sourceRoot": "libs/shared/src",
+      "sourceRoot": "lib/shared/src",
       "compilerOptions": {
-        "tsConfigPath": "./libs/shared/tsconfig.lib.json"
+        "tsConfigPath": "./lib/shared/tsconfig.lib.json"
       }
     }
   }

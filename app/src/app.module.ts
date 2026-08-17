@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { SharedModule } from '@shared/shared.module';
+import { SharedModule } from '../../lib/shared/src/shared.module';
 import { EnvSchema } from './env.schema';
 import { resolve } from 'path';
 
