@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserStatus } from '../domain/value-object/user-status.value-object';
+import { UserStatus } from '../../../domain/value-object/user-status.value-object';
 
 /**
  * UserDto represents the data transfer object for a user.

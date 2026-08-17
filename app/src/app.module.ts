@@ -5,6 +5,7 @@ import { SharedModule } from '../../lib/shared/src/shared.module';
 import { EnvSchema } from './env.schema';
 import { resolve } from 'path';
 import { DATABASE_NAME } from '@shared/index';
+import { UserModule } from './context/user/user.module';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { DATABASE_NAME } from '@shared/index';
                 uri: configService.get<string>('MONGO_URI'),
             }),
         }),
+        UserModule,
     ],
     controllers: [],
     providers: [],

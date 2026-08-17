@@ -1,11 +1,10 @@
-import { MapperRoot } from '@shared/infra/mapper/mapper-root';
-import { User } from '../domain/user';
+import { User } from '../../../domain/user';
 import { UserDto } from './user.dto';
 
 /**
- * UserMapper converts between the User domain entity and its UserDto representation.
+ * UserDtoMapper converts between the User domain entity and its UserDto representation.
  */
-export class UserMapper extends MapperRoot<User, UserDto> {
+export class UserDtoMapper {
     /**
      * Creates a User domain entity from a UserDto.
      * @param dto - The UserDto to convert.
