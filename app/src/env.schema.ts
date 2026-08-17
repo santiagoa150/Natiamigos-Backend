@@ -11,6 +11,10 @@ export const EnvSchema = Joi.object({
     MONGO_URI: Joi.string().uri(),
     CRYPTO_PEPPER: Joi.string().min(32),
     API_KEY: Joi.string().min(32),
+    JWT_ACCESS_TOKEN_SECRET: Joi.string().min(32),
+    JWT_REFRESH_TOKEN_SECRET: Joi.string().min(32),
+    JWT_ACCESS_TOKEN_EXPIRATION: Joi.string(),
+    JWT_REFRESH_TOKEN_EXPIRATION: Joi.string(),
 })
     .options({ presence: 'required' })
     .required();

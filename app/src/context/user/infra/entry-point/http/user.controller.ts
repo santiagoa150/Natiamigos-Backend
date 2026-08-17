@@ -4,7 +4,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import { HttpSuccessfulResponse } from '@shared/infra/entry-point/http/http-successful.response';
 import { ApiKeyGuard } from '../../../../auth/infra/adapter/nestjs/api-key.guard';
 import { User } from '../../../domain/user';
-import { RegisterUserCommand } from '../cqrs/register-user.command';
+import { RegisterUserCommand } from '../../../app/command/register-user.command';
 import { RegisterUserRequest } from './request/register-user.request';
 import { ApiRegisterUser } from './swagger/register-user.swagger';
 

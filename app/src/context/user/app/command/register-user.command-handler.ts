@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { UserApp } from '../../../app/user.app';
-import { User } from '../../../domain/user';
+import { UserApp } from '../user.app';
+import { User } from '../../domain/user';
 import { RegisterUserCommand } from './register-user.command';
 
 /**

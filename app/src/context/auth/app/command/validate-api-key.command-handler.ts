@@ -1,5 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { ApiKeyApp } from '../../../app/api-key.app';
+import { ApiKeyApp } from '../api-key.app';
 import { ValidateApiKeyCommand } from './validate-api-key.command';
 
 /**

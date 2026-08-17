@@ -3,7 +3,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import { Request } from 'express';
 import { Exception } from '@shared/domain/error/exception';
 import { AuthErrorMessages } from '../../../domain/error/auth-error.constant';
-import { ValidateApiKeyCommand } from '../../entry-point/cqrs/validate-api-key.command';
+import { ValidateApiKeyCommand } from '../../../app/command/validate-api-key.command';
 
 export const API_KEY_HEADER = 'x-api-key';
 

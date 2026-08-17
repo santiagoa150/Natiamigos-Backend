@@ -7,6 +7,7 @@ import { USER_REPOSITORY } from '../domain/port/user.repository';
 import type { UserRepository } from '../domain/port/user.repository';
 import { UserErrorMessages } from '../domain/error/user-error.constant';
 import { PasswordValueObject } from '../domain/value-object/password.value-object';
+import { EmailValueObject } from '../domain/value-object/email.value-object';
 
 /**
  * UserApp orchestrates the user use cases.
@@ -44,5 +45,14 @@ export class UserApp {
         await this._repository.create(user);
         this._logger.log(`User registered with email: ${user.email.toString()}`);
         return user;
+    }
+
+    /**
+     * Finds a user by its email.
+     * @param email - The email of the user.
+     * @returns The matching user, or null if none was found.
+     */
+    public async getByEmail(email: string): Promise<User | null> {
+        return this._repository.getByEmail(EmailValueObject.create(email));
     }
 }
