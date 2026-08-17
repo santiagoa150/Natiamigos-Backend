@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { LoginApp } from '../login.app';
-import { JwtTokens } from '../../domain/port/jwt.repository';
+import { AuthTokens } from '../../domain/port/token.repository';
 import { LoginCommand } from './login.command';
 
 /**
@@ -18,7 +18,7 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand> {
      * @param command - The command carrying the login credentials.
      * @returns The issued access and refresh tokens.
      */
-    public async execute(command: LoginCommand): Promise<JwtTokens> {
+    public async execute(command: LoginCommand): Promise<AuthTokens> {
         return this._loginApp.login(command.email, command.password);
     }
 }

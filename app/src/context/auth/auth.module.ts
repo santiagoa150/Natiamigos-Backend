@@ -3,10 +3,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { SharedModule } from '@shared/shared.module';
 import { ApiKeyApp } from './app/api-key.app';
 import { LoginApp } from './app/login.app';
+import { RefreshTokenApp } from './app/refresh-token.app';
 import { LoginCommandHandler } from './app/command/login.command-handler';
+import { RefreshTokenCommandHandler } from './app/command/refresh-token.command-handler';
 import { ValidateApiKeyCommandHandler } from './app/command/validate-api-key.command-handler';
 import { API_KEY_REPOSITORY } from './domain/port/api-key.repository';
-import { JWT_REPOSITORY } from './domain/port/jwt.repository';
+import { TOKEN_REPOSITORY } from './domain/port/token.repository';
 import { AuthController } from './infra/entry-point/http/auth.controller';
 import { ApiKeyGuard } from './infra/adapter/nestjs/api-key.guard';
 import { NestApiKeyRepository } from './infra/adapter/nestjs/api-key.repository';
@@ -17,11 +19,13 @@ import { NestJwtRepository } from './infra/adapter/nestjs/jwt.repository';
     controllers: [AuthController],
     providers: [
         { provide: API_KEY_REPOSITORY, useClass: NestApiKeyRepository },
-        { provide: JWT_REPOSITORY, useClass: NestJwtRepository },
+        { provide: TOKEN_REPOSITORY, useClass: NestJwtRepository },
         ApiKeyApp,
         LoginApp,
+        RefreshTokenApp,
         ValidateApiKeyCommandHandler,
         LoginCommandHandler,
+        RefreshTokenCommandHandler,
         ApiKeyGuard,
     ],
     exports: [ApiKeyGuard],

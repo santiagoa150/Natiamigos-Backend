@@ -6,8 +6,8 @@ import type { CryptoRepository } from '@shared/domain/port/crypto.repository';
 import { GetUserByEmailQuery } from '../../user/app/query/get-user-by-email.query';
 import type { User } from '../../user/domain/user';
 import { AuthErrorMessages } from '../domain/error/auth-error.constant';
-import { JWT_REPOSITORY } from '../domain/port/jwt.repository';
-import type { JwtRepository, JwtTokens } from '../domain/port/jwt.repository';
+import { TOKEN_REPOSITORY } from '../domain/port/token.repository';
+import type { AuthTokens, TokenRepository } from '../domain/port/token.repository';
 
 /**
  * LoginApp orchestrates the login use case.
@@ -17,12 +17,12 @@ export class LoginApp {
     /**
      * @param _queryBus - The query bus used to look up the user in the User context.
      * @param _cryptoRepository - The repository used to compare the provided password against the stored hash.
-     * @param _jwtRepository - The repository used to issue access and refresh tokens.
+     * @param _tokenRepository - The repository used to issue access and refresh tokens.
      */
     constructor(
         private readonly _queryBus: QueryBus,
         @Inject(CRYPTO_REPOSITORY) private readonly _cryptoRepository: CryptoRepository,
-        @Inject(JWT_REPOSITORY) private readonly _jwtRepository: JwtRepository,
+        @Inject(TOKEN_REPOSITORY) private readonly _tokenRepository: TokenRepository,
     ) {}
 
     /**
@@ -33,12 +33,12 @@ export class LoginApp {
      * @param password - The password of the user.
      * @returns The issued access and refresh tokens.
      */
-    public async login(email: string, password: string): Promise<JwtTokens> {
+    public async login(email: string, password: string): Promise<AuthTokens> {
         const user = await this._queryBus.execute<GetUserByEmailQuery, User | null>(new GetUserByEmailQuery(email));
         if (!user || !(await this._cryptoRepository.compare(password, user.password.toString()))) {
             throw new Exception(AuthErrorMessages.invalidCredentials(), HttpStatus.UNAUTHORIZED);
         }
 
-        return this._jwtRepository.generateTokens({ sub: user.id.toString(), email: user.email.toString() });
+        return this._tokenRepository.generateTokens({ sub: user.id.toString(), email: user.email.toString() });
     }
 }
