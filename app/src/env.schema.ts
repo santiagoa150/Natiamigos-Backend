@@ -9,6 +9,7 @@ export const EnvSchema = Joi.object({
     SWAGGER_TITLE: Joi.string(),
     SWAGGER_PATH: Joi.string(),
     MONGO_URI: Joi.string().uri(),
+    CRYPTO_PEPPER: Joi.string().min(32),
 })
     .options({ presence: 'required' })
     .required();

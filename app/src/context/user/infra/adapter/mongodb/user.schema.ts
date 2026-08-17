@@ -8,6 +8,7 @@ export interface UserRecord {
     id: string;
     name: string;
     email: string;
+    password: string;
     status: string;
 }
 
@@ -16,6 +17,7 @@ export const UserSchema = new Schema<UserRecord>(
         id: { type: String, required: true, trim: true },
         name: { type: String, required: true, trim: true },
         email: { type: String, required: true, trim: true },
+        password: { type: String, required: true },
         status: { type: String, enum: Object.values(UserStatus), required: true },
     },
     { collection: 'users', timestamps: false },

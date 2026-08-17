@@ -1,6 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 import { StringValueObject } from '@shared/domain/value-object/string.value-object';
 import { Exception } from '@shared/domain/error/exception';
+import { UserErrorMessages } from '../error/user-error.constant';
 
 /**
  * UserStatus enumerates the valid statuses a user can have.
@@ -43,7 +44,7 @@ export class UserStatusValueObject extends StringValueObject {
      */
     public static validate(value: string): void {
         if (!Object.values(UserStatus).includes(value as UserStatus)) {
-            throw new Exception(`The user status "${value}" is not valid.`, HttpStatus.BAD_REQUEST);
+            throw new Exception(UserErrorMessages.invalidStatus(value), HttpStatus.BAD_REQUEST);
         }
     }
 }

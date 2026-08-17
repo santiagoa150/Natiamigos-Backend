@@ -11,7 +11,7 @@ export class UserRecordMapper {
      * @returns The resulting User domain entity.
      */
     public create(record: UserRecord): User {
-        return User.create(record.id, record.name, record.email, record.status);
+        return User.create(record.id, record.name, record.email, record.password, record.status);
     }
 
     /**
@@ -24,6 +24,7 @@ export class UserRecordMapper {
             id: domain.id.toString(),
             name: domain.name.toString(),
             email: domain.email.toString(),
+            password: domain.password.toString(),
             status: domain.status.toString(),
         };
     }

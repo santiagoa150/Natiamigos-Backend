@@ -24,6 +24,13 @@ export class UserDto {
     email!: string;
 
     @ApiProperty({
+        description: 'The password of the user.',
+        example: 'P@ssw0rd!',
+        writeOnly: true,
+    })
+    password!: string;
+
+    @ApiProperty({
         description: 'The status of the user.',
         enum: UserStatus,
         example: UserStatus.ACTIVE,

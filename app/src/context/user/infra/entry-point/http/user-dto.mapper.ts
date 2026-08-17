@@ -11,7 +11,7 @@ export class UserDtoMapper {
      * @returns The resulting User domain entity.
      */
     public create(dto: UserDto): User {
-        return User.create(dto.id, dto.name, dto.email, dto.status);
+        return User.create(dto.id, dto.name, dto.email, dto.password, dto.status);
     }
 
     /**
@@ -25,6 +25,7 @@ export class UserDtoMapper {
         dto.name = domain.name.toString();
         dto.email = domain.email.toString();
         dto.status = domain.status.toString();
+        // The password is intentionally left unset to avoid exposing it in API responses.
         return dto;
     }
 }

@@ -60,11 +60,7 @@ export class NestExceptionFilter implements ExceptionFilter {
      * @param host - The arguments host that provides access to the request and response objects.
      */
     catch(exception: Error, host: ArgumentsHost) {
-        if (exception instanceof Exception && exception.isWarning) {
-            this._logger.warn(JSON.stringify(exception));
-        } else {
-            this._logger.error(JSON.stringify(exception));
-        }
+        this._logException(exception);
         const response = new ExceptionResponse();
         response.timestamp = new Date().toISOString();
         if (exception instanceof Exception) {
@@ -89,6 +85,21 @@ export class NestExceptionFilter implements ExceptionFilter {
             default: {
                 this._logger.warn(`Exception filter does not support this type of request: ${host.getType()}`);
             }
+        }
+    }
+
+    /**
+     * Logs the given exception, including its private error when present.
+     * @param exception - The exception to log.
+     */
+    private _logException(exception: Error): void {
+        if (exception instanceof Exception) {
+            this._logger.error(exception.message);
+            if (exception.privateError) {
+                this._logger.error(NestExceptionFilter.getMessageFromException(exception.privateError));
+            }
+        } else {
+            this._logger.error(NestExceptionFilter.getMessageFromException(exception));
         }
     }
 }
