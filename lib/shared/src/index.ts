@@ -12,6 +12,6 @@ export * from './domain/value-object';
 /**
  * Infrastructure
  */
-export * from './infrastructure/adapter/nestjs/nest.exception-filter';
-export * from './infrastructure/entry-point/http/http-successful.response';
-export * from './infrastructure/mapper/mapper-root';
+export * from './infra/adapter/nestjs/nest.exception-filter';
+export * from './infra/entry-point/http/http-successful.response';
+export * from './infra/mapper/mapper-root';
